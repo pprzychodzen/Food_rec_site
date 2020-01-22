@@ -152,6 +152,4 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_ROOT = ''
 
-AUTH_USER_MODEL = 'user.CustomUser'
-LOGIN_REDIRECT_URL = 'home'
-LOGOUT_REDIRECT_URL = 'home'
+
