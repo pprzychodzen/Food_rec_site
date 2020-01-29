@@ -12,14 +12,14 @@
     <div class="nav-wrapper">
         <a href="/" class="brand-logo">Tutorials!</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="/">home</a></li>
+            <li><a href="{% url 'main:homepage' %}">home</a></li>
             {% if user.is_authenticated %}
             <li><a href="/account">{{user.username}}</a></li>
-            <li><a href="/logout">logout</a></li>
+            <li><a href="{% url 'user:logout' %}">logout</a></li>
 
             {% else %}
-            <li><a href="/register">register</a></li>
-            <li><a href="/login">login</a></li>
+            <li><a href="{% url 'user:register' %}">register</a></li>
+            <li><a href="{% url 'user:login' %}">login</a></li>
             {% endif %}
         </ul>
     </div>
