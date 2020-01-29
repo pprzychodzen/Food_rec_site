@@ -22,6 +22,5 @@ app_name = 'main'
 urlpatterns = [
     path('', views.homepage, name='homepage'),
     path('', include('user.urls')),
-
     path("<single_slug>", views.single_slug, name="single_slug"),
 ]
