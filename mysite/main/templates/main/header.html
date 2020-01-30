@@ -1,48 +1,84 @@
 <head>
     {% load static %}
-    <link href="{% static 'tinymce/css/prism.css' %}" rel="stylesheet">
-    <link href="{% static 'main/css/materialize.css' %}" rel="stylesheet">
+        <link href="{% static 'tinymce/css/prism.css' %}" rel="stylesheet">
+    <!--    <link href="{% static 'main/css/materialize.css' %}" rel="stylesheet">-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 
 <body>
 
 <nav>
     <div class="nav-wrapper">
-        <a href="/" class="brand-logo">Tutorials!</a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="{% url 'main:homepage' %}">home</a></li>
-            {% if user.is_authenticated %}
-            <li><a href="/account">{{user.username}}</a></li>
-            <li><a href="{% url 'user:logout' %}">logout</a></li>
+        <div class="conatiner">
+            <a href="/" class="brand-logo" style="margin-left:10px;font-weight: bold">fooder.</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="{% url 'main:homepage' %}">home</a></li>
+                {% if user.is_authenticated %}
+                <li><a href="/account">{{user.username}}</a></li>
+                <li><a href="{% url 'user:logout' %}">logout</a></li>
 
-            {% else %}
-            <li><a href="{% url 'user:register' %}">register</a></li>
-            <li><a href="{% url 'user:login' %}">login</a></li>
-            {% endif %}
-        </ul>
+                {% else %}
+                <li><a href="{% url 'user:register' %}">register</a></li>
+                <li><a href="{% url 'user:login' %}">login</a></li>
+                {% endif %}
+            </ul>
+        </div>
     </div>
 </nav>
+ <style>
 
+    .sticky-nav{
+    position: fixed;
+    top:0;
+    z-index:1;
+    }
+
+
+
+    </style>
+    <script>
+    $(document).ready(function(){
+        $(window).scroll(function(){
+            if($(window).scrollTop()>150){
+                $('nav').addClass('sticky-nav');
+            }
+
+        });
+    });
+
+
+    </script>
 {% if messages %}
 {% for message in messages %}
 {% if message.tags == 'success'%}
 <script>M.toast({html: "{{message}}", classes: 'blue rounded',
                      displayLength:5000});
+
+
 </script>
 {% elif message.tags == 'info'%}
 <script>M.toast({html: "{{message}}", classes: 'green rounded',
                      displayLength:5000});
+
+
 </script>
 {% elif message.tags == 'warning'%}
 <script>M.toast({html: "{{message}}", classes: 'orange rounded',
                      displayLength:5000});
+
+
 </script>
 {% elif message.tags == 'error'%}
 <script>M.toast({html: "{{message}}", classes: 'red rounded',
                      displayLength:5000});
+
+
 </script>
+
+
 {% endif %}
 {% endfor %}
 {% endif %}
@@ -56,4 +92,4 @@
 
 </body>
 
-<script src="{% static 'tinymce/js/prism.js' %}"></script>
+<!--<script src="{% static 'tinymce/js/prism.js' %}"></script>-->
